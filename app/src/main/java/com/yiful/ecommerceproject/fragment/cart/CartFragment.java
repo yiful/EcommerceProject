@@ -101,7 +101,10 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnCheckout:
-
+                if(MainActivity.cartItems.size()==0){
+                    Toast.makeText(getActivity(), "Please add items to your cart first!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 getPayment();
                 showTotalAmount();
                 break;
