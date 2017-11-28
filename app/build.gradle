@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.yiful.ecommerceproject"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -33,4 +33,5 @@ dependencies {
     implementation 'com.android.support:support-v4:27.0.1'
     implementation 'com.android.support:appcompat-v7:27.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.15.3'
 }

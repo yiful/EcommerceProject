@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.yiful.ecommerceproject.R;
 import com.yiful.ecommerceproject.model.Categories;
@@ -42,7 +43,9 @@ public class ShoppingFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        categoryList = new ArrayList<>();
+        Log.i("before loaded data", "size: "+categoryList.size());
+        loadDataFromApi();
     }
 
     @Override
@@ -52,31 +55,35 @@ public class ShoppingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_shopping, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
+     //   recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
+        Log.i("onCreateView", "size "+categoryList.size());
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        loadDataFromApi();
+       // adapter.notifyDataSetChanged();
+       // Toast.makeText(getActivity(), categoryList.get(0).getId(), Toast.LENGTH_SHORT).show();
+        Log.i("onActivityCreated", "size "+categoryList.size());
+
 
     }
 
     private void loadDataFromApi() {
-        categoryList = new ArrayList<>();
+
         APIService apiService = ApiClient.getClient().create(APIService.class);
         Call<Categories> call = apiService.getCategoryResponse(user.getAppApiKey(), user.getUserID());
         call.enqueue(new Callback<Categories>() {
             @Override
             public void onResponse(Call<Categories> call, Response<Categories> response) {
                 categoryList = response.body().getCategory();
-//                Log.i(TAG, "success: "+categoryList.get(2).getCatagoryDiscription());
+                Log.i(TAG, "retrofit success");
                 adapter = new CategoryAdapter(getActivity(), categoryList);
                 recyclerView.setAdapter(adapter);
+
+                Log.i("loaded data", "size: "+categoryList.size());
             }
 
             @Override

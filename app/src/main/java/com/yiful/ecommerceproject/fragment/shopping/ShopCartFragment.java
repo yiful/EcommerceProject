@@ -20,6 +20,8 @@ import com.yiful.ecommerceproject.activity.MainActivity;
 import com.yiful.ecommerceproject.model.CartItem;
 import com.yiful.ecommerceproject.model.Products;
 
+import java.util.ArrayList;
+
 /**
  * Created by Yifu on 11/26/2017.
  */
@@ -47,12 +49,21 @@ public class ShopCartFragment extends DialogFragment implements View.OnClickList
         spinner = view.findViewById(R.id.spinner);
         btnCancel = view.findViewById(R.id.btnCancel);
         btnYes = view.findViewById(R.id.btnYes);
-
+        addSpinner(productBean.getQuantity());
         btnCancel.setOnClickListener(this);
         btnYes.setOnClickListener(this);
         Picasso.with(getActivity()).load(productBean.getImage()).into(imageView);
         tvName.setText(productBean.getProductName());
         return view;
+    }
+
+    private void addSpinner(String quantity) {
+        ArrayList<String> list = new ArrayList<>();
+        for(int i = 0; i<=Integer.valueOf(quantity); i++){
+            list.add(""+i);
+        }
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,list);
+        spinner.setAdapter(adapter);
     }
 
     @Override

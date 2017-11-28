@@ -32,7 +32,8 @@
             android:text="Clear my cart"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAllCaps="false"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -48,28 +49,29 @@
 
         <Button
             android:id="@+id/btnCheckout"
-            android:layout_width="match_parent"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:text="Check out"
-            android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="47dp"
-            android:layout_height="49dp"
+            android:layout_width="35dp"
+            android:layout_height="33dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/cart_nav"
             app:layout_constraintBottom_toBottomOf="@+id/title"
             app:layout_constraintStart_toEndOf="@+id/title"
-            app:layout_constraintTop_toTopOf="@+id/title" />
+            app:layout_constraintTop_toTopOf="@+id/title"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tvHint"
@@ -86,6 +88,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="32dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btnCheckout"
+            app:layout_constraintStart_toStartOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
