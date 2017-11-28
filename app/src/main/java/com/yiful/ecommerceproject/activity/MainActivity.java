@@ -47,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
 
                     case R.id.shopping:
-                        /*if(getFragmentManager().findFragmentByTag(FRAGMENT_SHOP) != null){
+                        if(getFragmentManager().findFragmentByTag(FRAGMENT_SHOP) != null){
                             fragment = getFragmentManager().findFragmentByTag(FRAGMENT_SHOP);
                             Log.i(TAG, "reload fragment shop");
-                        }else{*/
+                        }else {
                             fragment = ShoppingFragment.newInstance(user);
-                            getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment,FRAGMENT_SHOP).commit();
-
+                        }
+                        getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment, FRAGMENT_SHOP).commit();
                         break;
                     case R.id.cart:
                         fragment = new CartFragment();
