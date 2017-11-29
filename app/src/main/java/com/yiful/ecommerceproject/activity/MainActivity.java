@@ -1,6 +1,8 @@
 package com.yiful.ecommerceproject.activity;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -24,6 +26,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String FRAGMENT_SHOP = "shopping fragment";
+    private static final String FRAGMENT_CART = "cart fragment";
     BottomNavigationView bottomNavigationView;
     Fragment fragment;
     static User user;
@@ -56,8 +59,13 @@ public class MainActivity extends AppCompatActivity {
                         getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment, FRAGMENT_SHOP).commit();
                         break;
                     case R.id.cart:
-                        fragment = new CartFragment();
-                        getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+                        if(getFragmentManager().findFragmentByTag(FRAGMENT_CART) != null){
+                            fragment = getFragmentManager().findFragmentByTag(FRAGMENT_CART);
+                            Log.i(TAG, "reload fragment cart");
+                        }else {
+                            fragment = new CartFragment();
+                        }
+                        getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment, FRAGMENT_CART).commit();
                         break;
                     case R.id.account:
                         fragment = new AccountFragment();
@@ -78,4 +86,5 @@ public class MainActivity extends AppCompatActivity {
     public static User getUser(){
         return user;
     }
+
 }

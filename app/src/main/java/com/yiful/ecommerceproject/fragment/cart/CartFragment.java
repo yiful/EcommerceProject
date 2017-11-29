@@ -39,7 +39,7 @@ import com.paypal.android.sdk.payments.PaymentConfirmation;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CartFragment extends Fragment implements View.OnClickListener{
+public class CartFragment extends Fragment implements View.OnClickListener, CartItemAdapter.AdapterInterface{
     public static final int PAYPAL_REQUEST_CODE = 123;
     private static PayPalConfiguration payPalConfiguration;
     private RecyclerView recyclerView;
@@ -93,7 +93,7 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        adapter = new CartItemAdapter(getActivity());
+        adapter = new CartItemAdapter(getActivity(),this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -194,6 +194,11 @@ public class CartFragment extends Fragment implements View.OnClickListener{
                 Log.i("placeOrder", t.toString());
             }
         });
+    }
+
+    @Override
+    public void updateTotalAmount() {
+        showTotalAmount();
     }
 
     private static class PaypalConstants{

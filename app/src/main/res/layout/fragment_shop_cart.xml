@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:padding="10dp">
 
     <Button
         android:id="@+id/btnCancel"
@@ -56,7 +57,7 @@
         android:id="@+id/tvNameCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -67,7 +68,7 @@
         android:id="@+id/tvSetQuan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Quantity"
         app:layout_constraintStart_toEndOf="@+id/ivCart"
