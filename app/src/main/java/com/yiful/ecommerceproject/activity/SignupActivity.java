@@ -3,6 +3,7 @@ package com.yiful.ecommerceproject.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,12 +38,17 @@ public class SignupActivity extends AppCompatActivity {
     Button _signupButton;
     @Bind(R.id.link_login)
     TextView _loginLink;
+    @Bind(R.id.toobar)
+    Toolbar toolbar;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
+
+        toolbar.setTitle("User register");
+        setSupportActionBar(toolbar);
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override

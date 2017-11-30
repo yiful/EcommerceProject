@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -40,12 +41,17 @@ public class LoginActivity extends AppCompatActivity {
     TextView _signupLink;
     @Bind(R.id.link_forgot)
     TextView tvForgot;
+    @Bind(R.id.toobar)
+    Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        toolbar.setTitle("User Login");
+        setSupportActionBar(toolbar);
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 

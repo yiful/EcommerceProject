@@ -4,12 +4,14 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
 
 import com.yiful.ecommerceproject.R;
 import com.yiful.ecommerceproject.fragment.account.AccountFragment;
