@@ -10,7 +10,8 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/iron">
 
         <TextView
             android:id="@+id/title"
@@ -19,6 +20,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Your Cart"
+            android:textColor="@color/black"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,6 +32,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="5dp"
             android:text="Clear my cart"
+            android:textColor="@color/white"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +45,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:background="@color/white"
+            android:background="@color/iron"
             app:layout_constraintBottom_toTopOf="@+id/btnCheckout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
