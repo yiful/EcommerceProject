@@ -10,12 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/title"
-        android:text="Order History"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"/>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Order History"
+            android:textColor="@color/black"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+            android:background="@color/titleBg"/>
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"

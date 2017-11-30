@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:text="All Categories"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:background="@color/titleBg"/>
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

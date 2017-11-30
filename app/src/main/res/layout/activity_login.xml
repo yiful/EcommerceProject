@@ -57,13 +57,14 @@
                 android:text="3702044" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/btn_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
             android:text="Login"/>
 
         <TextView android:id="@+id/link_signup"

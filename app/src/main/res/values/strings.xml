@@ -7,7 +7,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="confirm_cart">Do you want to add the following item(s) to your cart?</string>
+    <string name="confirm_cart">Do you want to add the item(s) to your cart?</string>
     <string-array name="cart_quantity">
         <item>0</item>
         <item>1</item>

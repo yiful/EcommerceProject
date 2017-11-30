@@ -47,7 +47,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
 
-        toolbar.setTitle("User register");
+        toolbar.setTitle("User Register");
         setSupportActionBar(toolbar);
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +64,7 @@ public class SignupActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
                 finish();
-                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
             }
         });
     }

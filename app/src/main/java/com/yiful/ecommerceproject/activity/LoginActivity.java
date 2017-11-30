@@ -125,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                 //move user to main activity with user info
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("userInfo", user);
+                intent.putExtra("lastInBackStack","login");
                 startActivity(intent);
             }
 

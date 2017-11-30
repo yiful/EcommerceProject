@@ -38,14 +38,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         user = getIntent().getParcelableExtra("userInfo");
+        String lastInBackStack = getIntent().getStringExtra("lastInBackStack");
         apiService = ApiClient.getClient().create(APIService.class);
         cartItems = new ArrayList<>();
 
         Log.i(TAG,"user parcel: "+user.getAppApiKey());
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -67,22 +68,31 @@ public class MainActivity extends AppCompatActivity {
                         }else {
                             fragment = new CartFragment();
                         }
-                        getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment, FRAGMENT_CART).commit();
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentContainer, fragment, FRAGMENT_CART)
+                                .commit();
                         break;
                     case R.id.account:
                         fragment = new AccountFragment();
-                        getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentContainer, fragment)
+                                .commit();
                         break;
                 }
                 return true;
             }
         });
+        if(lastInBackStack.equals("login")){
+            bottomNavigationView.setSelectedItemId(R.id.shopping);
+        }else{
+            bottomNavigationView.setSelectedItemId(R.id.cart);
+        }
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        bottomNavigationView.setSelectedItemId(R.id.shopping);
     }
 
     public static User getUser(){

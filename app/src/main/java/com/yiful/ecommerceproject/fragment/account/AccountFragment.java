@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class AccountFragment extends Fragment {
     private List<String> settingList;
     private TextView tvName, tvMobile, tvEmail;
     private ListView listView;
+    private Button btnLogout;
     public AccountFragment() {
         // Required empty public constructor
     }
@@ -57,7 +59,13 @@ public class AccountFragment extends Fragment {
         tvEmail = view.findViewById(R.id.tvEmail);
         tvEmail.setText(user.getUserEmail());
         listView = view.findViewById(R.id.listView);
-
+        btnLogout = view.findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, settingList);
         listView.setAdapter(adapter);
 

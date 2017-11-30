@@ -2,6 +2,9 @@ package com.yiful.ecommerceproject.fragment.cart;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -102,18 +105,38 @@ public class CartFragment extends Fragment implements View.OnClickListener, Cart
         switch (view.getId()){
             case R.id.btnCheckout:
                 if(MainActivity.cartItems.size()==0){
-                    Toast.makeText(getActivity(), "Please add items to your cart first!", Toast.LENGTH_SHORT).show();
+                    showAlert("Please add items to your cart first!");
+                    //Toast.makeText(getActivity(), "Please add items to your cart first!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 getPayment();
-                showTotalAmount();
+
                 break;
             case R.id.btnClear:
-                MainActivity.cartItems.clear();
-                adapter.notifyDataSetChanged();
-                showTotalAmount();
-                Toast.makeText(getActivity(), "Your cart is cleared!", Toast.LENGTH_SHORT).show();
-                if(MainActivity.cartItems.size()==0)tvHint.setVisibility(View.VISIBLE);
+                if(MainActivity.cartItems.size()==0){
+                    Toast.makeText(getActivity(), "Your cart is empty already!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage("Do you want to clear your cart?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        MainActivity.cartItems.clear();
+                        adapter.notifyDataSetChanged();
+                        showTotalAmount();
+                        Toast.makeText(getActivity(), "Your cart is cleared!", Toast.LENGTH_SHORT).show();
+                        if(MainActivity.cartItems.size()==0)tvHint.setVisibility(View.VISIBLE);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
         }
     }
 
@@ -138,20 +161,37 @@ public class CartFragment extends Fragment implements View.OnClickListener, Cart
                 PaymentConfirmation paymentConfirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
                 if(paymentConfirmation != null){
                     try {
+                        MainActivity.cartItems.clear();
+                        showTotalAmount();
                         String paymentDetails = paymentConfirmation.toJSONObject().toString();
                         Log.i("paypal","payment is received");
                         Log.i("Payment Details: ", paymentDetails);
                         placeOrderFromCart();
-                  //      Fragment fragment = new CartFragment();
-                  //      getActivity().getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+                        showAlert("Payment success! Your orders have been placed.");
                     }catch (Exception e){
                         Log.i("paypal","error getting payment");
                     }
                 }
+            }else{
+                //Payment failure
+                showAlert("Payment failure!");
             }
         }else{
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void showAlert(String msg) {
+         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+         builder.setMessage(msg);
+         builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+             @Override
+             public void onClick(DialogInterface dialogInterface, int i) {
+
+             }
+         });
+         AlertDialog dialog = builder.create();
+         dialog.show();
     }
 
     private void placeOrderFromCart() {
@@ -194,6 +234,12 @@ public class CartFragment extends Fragment implements View.OnClickListener, Cart
                 Log.i("placeOrder", t.toString());
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        showTotalAmount();
     }
 
     @Override
