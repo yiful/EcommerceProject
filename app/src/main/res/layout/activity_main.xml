@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.yiful.ecommerceproject.activity.MainActivity">
-    <include layout="@layout/app_bar" android:id="@+id/toobar"/>
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
